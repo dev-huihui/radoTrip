@@ -1,11 +1,13 @@
 spring:
+  profiles:
+    active: local
   application:
     name: radoTripApi
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/radotrip?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: your_mysql_username
-    password: your_mysql_password
+    username: ${SPRING_DATASOURCE_USERNAME:your_mysql_username}
+    password: ${SPRING_DATASOURCE_PASSWORD:your_mysql_password}
 # MyBatis 설정
 mybatis:
   # XML 매퍼 파일들의 위치 지정 (resources/mappers 폴더 하위의 모든 xml 파일)
@@ -15,3 +17,7 @@ mybatis:
   # 카멜케이스 자동 매핑 (DB의 snake_case 컬럼명을 자바의 camelCase 필드명으로 매핑)
   configuration:
     map-underscore-to-camel-case: true
+
+tour-api:
+  service-key: ${TOUR_API_SERVICE_KEY:}
+  base-url: https://apis.data.go.kr/B551011/KorService1
