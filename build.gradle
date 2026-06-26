@@ -21,6 +21,8 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    // Jasypt – 암호화된 프로퍼티 지원
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
     implementation 'org.springframework.boot:spring-boot-starter-webservices'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat-runtime'
@@ -28,9 +30,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-webservices-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
     // MyBatis Starter (JPA 대신 추가)
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
     // MySQL 드라이버
     runtimeOnly 'com.mysql:mysql-connector-j'
     
