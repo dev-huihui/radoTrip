@@ -8,11 +8,19 @@ spring:
     url: jdbc:mysql://localhost:3306/radotrip?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: ${SPRING_DATASOURCE_USERNAME:devuser}
     password: ENC(Cf1DPF3tG1Z3ZxGZV+JHcA==) # 암호화된 비밀번호 (Jasypt 로 암호화). 실제 비밀번호는 ENC(...) 로 교체합니다.
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+  api-docs:
+    path: /api-docs
+
 jasypt:
   encryptor:
     password: ${JASYPT_ENCRYPTOR_PASSWORD}
+
 mybatis:
-  mapper-locations: classpath:mappers/**/*.xml # XML 매퍼 파일들의 위치 지정 (resources/mappers 폴더 하위의 모든 xml 파일)
+  mapper-locations: classpath:mapper/**/*.xml # XML 매퍼 파일들의 위치 지정 (resources/mappers 폴더 하위의 모든 xml 파일)
   type-aliases-package: com.api.radotrip.dto # XML에서 자바 객체 타입을 짧게 쓰기 위한 기본 패키지 지정 (선택)
   configuration:
     map-underscore-to-camel-case: true # 카멜케이스 자동 매핑 (DB의 snake_case 컬럼명을 자바의 camelCase 필드명으로 매핑)
