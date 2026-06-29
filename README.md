@@ -47,7 +47,7 @@
 - **State/Interaction**: @dnd-kit (or React Beautiful DND) — 일정 편집 인터랙션 구현용 
 
 ### Back-End & Data
-- **Database/ORM**: Prisma / PostgreSQL (or MySQL) 
+- **Database/ORM**: MySQL
 - **Environment**: API Key 및 환경 변수 통합 관리 (보안 및 개인정보 보호) 
 
 ### External APIs (데이터 파이프라인)
