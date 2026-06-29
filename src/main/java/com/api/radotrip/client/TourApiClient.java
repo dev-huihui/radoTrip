@@ -19,15 +19,15 @@ public class TourApiClient {
 
     private final RestClient restClient;
 
-    @Value("${tour-api.service-key:YOUR_SERVICE_KEY}")
+    @Value("${tourApi.serviceKey}")
     private String serviceKey;
 
-    @Value("${tour-api.base-url:https://apis.data.go.kr/}")
+    @Value("${tourApi.baseUrl}")
     private String baseUrl;
 
     // 2026.06.24 전주국제 영화제 정보 가져오기
     public String fetchJeonjuFestivalInfo() {
-        URI uri = UriComponentsBuilder.fromUriString(baseUrl + "B553457/cultureinfo/area2")
+        URI uri = UriComponentsBuilder.fromUriString(baseUrl + "/B553457/cultureinfo/area2")
                 .queryParam("serviceKey", serviceKey)
                 .queryParam("numOfRows", 100)
                 .queryParam("pageNo", 1)
@@ -55,13 +55,14 @@ public class TourApiClient {
     // 2026.06.26 전국 지역정보 가져오기
     public String fetchAreaInfo() {
         // 공공데이터포털 API Key는 디코딩된 키인 경우가 많아 URI 인코딩 처리가 깨지지 않도록 URI 객체 직접 빌드
-        URI uri = UriComponentsBuilder.fromUriString(baseUrl + "B551011/KorService2/ldongCode2")
+        URI uri = UriComponentsBuilder.fromUriString(baseUrl + "/B551011/KorService2/ldongCode2")
                 .queryParam("serviceKey", serviceKey)
                 .queryParam("numOfRows", 9999)
                 .queryParam("pageNo", 1)
                 .queryParam("MobileOS", "ETC")
                 .queryParam("MobileApp", "RadoTrip")
                 .queryParam("lDongListYn", "Y")
+                .queryParam("_type", "json")
                 .build(true) // true: 인코딩된 상태 유지
                 .toUri();
 
@@ -85,7 +86,7 @@ public class TourApiClient {
      */
     public String fetchAreaBasedList(String areaCode, String sigunguCode, String contentTypeId) {
         // 공공데이터포털 API Key는 디코딩된 키인 경우가 많아 URI 인코딩 처리가 깨지지 않도록 URI 객체 직접 빌드
-        URI uri = UriComponentsBuilder.fromUriString(baseUrl + "B551011/KorService1/areaBasedList1")
+        URI uri = UriComponentsBuilder.fromUriString(baseUrl + "/B551011/KorService1/areaBasedList1")
                 .queryParam("serviceKey", serviceKey)
                 .queryParam("numOfRows", 100)
                 .queryParam("pageNo", 1)
