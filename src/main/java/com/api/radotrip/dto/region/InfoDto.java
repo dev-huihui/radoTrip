@@ -1,4 +1,4 @@
-package com.api.radotrip.dto.area;
+package com.api.radotrip.dto.region;
 
 import java.time.LocalDateTime;
 

@@ -1,10 +1,11 @@
 package com.api.radotrip.schedule;
 
-import com.api.radotrip.service.area.InfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import com.api.radotrip.service.region.InfoService;
 
 /**
  * 프로젝트 전체 스케줄러를 한곳에 모아 관리한다.
@@ -22,7 +23,7 @@ public class ScheduleRepo {
     public void runAreaInfoJob() {
         log.info("===== AreaInfoScheduler START =====");
         try {
-            int saved = infoService.addAreaInfo();
+            int saved = infoService.addRegionInfo();
             log.info("[Scheduler] AreaInfo 저장 완료 – {} 레코드", saved);
         } catch (Exception e) {
             log.error("[Scheduler] AreaInfoScheduler 실행 중 오류", e);

@@ -1,8 +1,8 @@
-package com.api.radotrip.mapper.area;
+package com.api.radotrip.mapper.region;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.api.radotrip.dto.area.InfoDto;
+import com.api.radotrip.dto.region.InfoDto;
 
 @Mapper
 public interface InfoMapper {

@@ -53,7 +53,7 @@ public class TourApiClient {
     }
 
     // 2026.06.26 전국 지역정보 가져오기
-    public String fetchAreaInfo() {
+    public String fetchRegionInfo() {
         // 공공데이터포털 API Key는 디코딩된 키인 경우가 많아 URI 인코딩 처리가 깨지지 않도록 URI 객체 직접 빌드
         URI uri = UriComponentsBuilder.fromUriString(baseUrl + "/B551011/KorService2/ldongCode2")
                 .queryParam("serviceKey", serviceKey)

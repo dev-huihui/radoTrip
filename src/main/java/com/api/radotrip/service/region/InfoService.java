@@ -1,8 +1,8 @@
-package com.api.radotrip.service.area;
+package com.api.radotrip.service.region;
 
 import com.api.radotrip.client.TourApiClient;
-import com.api.radotrip.dto.area.InfoDto;
-import com.api.radotrip.mapper.area.InfoMapper;
+import com.api.radotrip.dto.region.InfoDto;
+import com.api.radotrip.mapper.region.InfoMapper;
 import com.api.radotrip.util.CommonUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +23,8 @@ public class InfoService {
      * @return 파싱·저장된 레코드 수 (현재는 파싱된 DTO 개수)
      */
     @Transactional
-    public int addAreaInfo() {
-        String json = tourApiClient.fetchAreaInfo();
+    public int addRegionInfo() {
+        String json = tourApiClient.fetchRegionInfo();
         // 2026.06.26 데이터가 없을 경우
         if (json == null || json.isBlank()) {
             log.warn("AreaInfo API returned empty response");

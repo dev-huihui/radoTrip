@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.api.radotrip.mapper.area.InfoMapper">
-    <insert id="insertAreaInfo" parameterType="com.api.radotrip.dto.area.InfoDto">
-        /* insertAreaInfo */ 
-        INSERT INTO AREA_INFO (
+<mapper namespace="com.api.radotrip.mapper.region.InfoMapper">
+    <insert id="insertRegionInfo" parameterType="com.api.radotrip.dto.region.InfoDto">
+        /* insertRegionInfo */ 
+        INSERT INTO REGION_INFO (
             REGN_CD
             , REGN_NM
             , SIGNGU_CD
