@@ -58,24 +58,46 @@
 
 ---
 
-## 4. 프로젝트 구조 (Project Structure) - 예상
+## 4. 프로젝트 구조 (Project Structure)
 
 ```text
-├── public/                 # 로고(Rado Trip PNG) 및 정적 자원 관리 
+radoTripApi/
 ├── src/
-│   ├── app/                # Next.js App Router (페이지 및 레이아웃) 
-│   │   ├── layout.tsx      # 글로벌 레이아웃 (상단 네비게이션 바 포함)
-│   │   ├── page.tsx        # 메인 및 랜드 검색 페이지 (화면 1) 
-│   │   └── dashboard/      # AI 일정 생성 및 편집 대시보드 워크스페이스 (화면 2) 
-│   │       └── page.tsx
-│   ├── components/         # 재사용 가능한 UI 컴포넌트 
-│   │   ├── common/         # Button, Input, Modal, Sidebar 등 공유 컴포넌트 
-│   │   ├── map/            # 지도 시각화 및 Polyline 렌더링 컴포넌트
-│   │   └── timeline/       # 드래그 앤 드롭 가능한 타임라인 카드 컴포넌트 
-│   ├── hooks/              # 위치 기반 필터링 및 TSP 동선 계산 커스텀 훅
-│   ├── lib/                # 외부 API 연동용 유틸리티 함수 (TourAPI, 기상청 등) 
-│   ├── types/              # TypeScript 인터페이스 및 데이터 모델 정의 
-│   └── prisma/             # 데이터베이스 스키마 정의 파일 (Schema.prisma) 
-├── .env.example            # API 환경변수 샘플 파일 
-├── tailwind.config.js      # Tailwind CSS 설정 파일 
+│   ├── main/
+│   │   ├── java/com/api/radotrip/
+│   │   │   ├── RadoTripApiApplication.java
+│   │   │   ├── ServletInitializer.java
+│   │   │   ├── client/
+│   │   │   │   └── TourApiClient.java        # 한국관광공사 TourAPI 호출
+│   │   │   ├── config/
+│   │   │   │   ├── RestClientConfig.java     # RestClient 빈 설정
+│   │   │   │   └── SwaggerConfig.java        # Swagger UI 설정
+│   │   │   ├── controller/
+│   │   │   │   └── area/
+│   │   │   │       └── InfoController.java   # POST /api/area/info/fetch
+│   │   │   ├── dto/
+│   │   │   │   └── area/
+│   │   │   │       └── InfoDto.java
+│   │   │   ├── mapper/
+│   │   │   │   └── area/
+│   │   │   │       └── InfoMapper.java
+│   │   │   ├── schedule/
+│   │   │   │   └── ScheduleRepo.java         # 지역 정보 자동 수집 스케줄러
+│   │   │   ├── service/
+│   │   │   │   └── area/
+│   │   │   │       └── InfoService.java
+│   │   │   └── util/
+│   │   │       ├── CommonUtil.java
+│   │   │       └── PasswordEncryptor.java
+│   │   └── resources/
+│   │       ├── application.yaml
+│   │       ├── application-local.yaml
+│   │       ├── application-dev.yaml
+│   │       └── mappers/
+│   │           └── InfoMapper.xml
+│   └── test/
+├── build.gradle
+├── settings.gradle
+├── gradlew / gradlew.bat
 └── README.md
+```
