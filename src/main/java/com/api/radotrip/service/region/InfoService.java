@@ -35,7 +35,7 @@ public class InfoService {
         int retVal = 0;
         // 2026.06.26 데이터 추가
         for (InfoDto dto : dtos) {
-            retVal += infoMapper.insertAreaInfo(dto);
+            retVal += infoMapper.insertRegionInfo(dto);
         }
 
         return retVal;

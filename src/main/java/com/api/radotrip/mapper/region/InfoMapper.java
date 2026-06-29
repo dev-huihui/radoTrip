@@ -6,5 +6,5 @@ import com.api.radotrip.dto.region.InfoDto;
 
 @Mapper
 public interface InfoMapper {
-    int insertAreaInfo(InfoDto infoDto);
+    int insertRegionInfo(InfoDto infoDto);
 }
