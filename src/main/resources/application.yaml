@@ -5,9 +5,11 @@ spring:
     name: radoTripApi
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/radotrip?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: ${SPRING_DATASOURCE_USERNAME:devuser}
-    password: ENC(Cf1DPF3tG1Z3ZxGZV+JHcA==) # 암호화된 비밀번호 (Jasypt 로 암호화). 실제 비밀번호는 ENC(...) 로 교체합니다.
+    url: jdbc:mysql://localhost:3306/radotrip?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: devuser
+    # 암호화된 비밀번호 (Jasypt 로 암호화). 실제 비밀번호는 ENC(...) 로 교체합니다.
+    # password: ENC(Cf1DPF3tG1Z3ZxGZV+JHcA==)
+    password: 1234
 server:
   port: 8181
 jasypt:
@@ -23,8 +25,8 @@ springdoc:
     path: /swagger
   api-docs:
     path: /api-docs
-tour-api:
-  service-key: ${TOUR_API_SERVICE_KEY:}
-  base-url: https://apis.data.go.kr
+tourApi:
+  serviceKey: ${TOUR_API_SERVICE_KEY:}
+  baseUrl: https://apis.data.go.kr
 schedule:
   areaInfo: "0 0 2 * * *"
