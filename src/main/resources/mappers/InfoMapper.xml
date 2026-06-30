@@ -47,6 +47,14 @@
             , updated_at = CURRENT_TIMESTAMP
     </insert>
 
+    <select id="loadClassificationName" resultType="String">
+        /* loadClassificationName : 소분류(lclsSystm3) 우선, 없으면 중분류(lclsSystm2) 명칭 */
+        SELECT COALESCE(
+            (SELECT lclsSystm3Nm FROM CLASSIFICATION_CODE WHERE lclsSystm3Cd = #{lclsSystm3Cd} LIMIT 1),
+            (SELECT lclsSystm2Nm FROM CLASSIFICATION_CODE WHERE lclsSystm2Cd = #{lclsSystm2Cd} LIMIT 1)
+        )
+    </select>
+
     <select id="loadRegionId" parameterType="hashmap" resultType="Long">
         /* loadRegionId */
         SELECT RI.REGN_ID
