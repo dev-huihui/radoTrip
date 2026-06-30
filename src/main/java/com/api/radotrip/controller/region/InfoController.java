@@ -21,4 +21,10 @@ public class InfoController {
         return ResponseEntity.ok("Inserted " + inserted + " records.");
     }
 
+    @PostMapping("/classification/fetch")
+    public ResponseEntity<String> fetchAndSaveClassification() {
+        int inserted = infoService.addClassificationInfo();
+        return ResponseEntity.ok("Inserted " + inserted + " records.");
+    }
+
 }

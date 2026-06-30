@@ -18,6 +18,31 @@
         )
     </insert>
 
+    <insert id="addClassificationInfo" parameterType="com.api.radotrip.dto.region.ClassificationDto">
+        /* addClassificationInfo */
+        INSERT INTO CLASSIFICATION_CODE (
+            lclsSystm1Cd
+            , lclsSystm1Nm
+            , lclsSystm2Cd
+            , lclsSystm2Nm
+            , lclsSystm3Cd
+            , lclsSystm3Nm
+        )
+        VALUES (
+            #{lclsSystm1Cd}
+            , #{lclsSystm1Nm}
+            , #{lclsSystm2Cd}
+            , #{lclsSystm2Nm}
+            , #{lclsSystm3Cd}
+            , #{lclsSystm3Nm}
+        )
+        ON DUPLICATE KEY UPDATE
+            lclsSystm1Nm = #{lclsSystm1Nm}
+            , lclsSystm2Nm = #{lclsSystm2Nm}
+            , lclsSystm3Nm = #{lclsSystm3Nm}
+            , updated_at = CURRENT_TIMESTAMP
+    </insert>
+
     <select id="loadRegionId" parameterType="hashmap" resultType="Long">
         /* loadRegionId */
         SELECT RI.REGN_ID
