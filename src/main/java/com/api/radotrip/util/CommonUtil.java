@@ -34,8 +34,6 @@ public class CommonUtil {
         }
         try {
             JsonNode node = XML_MAPPER.readTree(xml);
-            System.out.println(node);
-            System.out.println(JSON_MAPPER.writeValueAsString(node));
             return JSON_MAPPER.writeValueAsString(node);
         } catch (Exception e) {
             return "";
