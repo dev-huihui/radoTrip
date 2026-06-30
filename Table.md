@@ -1,4 +1,4 @@
-3CREATE TABLE region_info (
+3CREATE TABLE region_code (
 regn_id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '지역 ID',
 regn_cd VARCHAR(10) NOT NULL COMMENT '시도 코드',
 regn_nm VARCHAR(50) NOT NULL COMMENT '시도 명칭',
@@ -34,7 +34,7 @@ CREATE TABLE `festival_info` (
 PRIMARY KEY (`fest_id`),
 KEY `regn_id` (`regn_id`),
 UNIQUE KEY `uk_festival_content` (`content_id`, `api_type`),
-CONSTRAINT `festival_info_ibfk_1` FOREIGN KEY (`regn_id`) REFERENCES `region_info` (`regn_id`)
+CONSTRAINT `festival_info_ibfk_1` FOREIGN KEY (`regn_id`) REFERENCES `region_code` (`regn_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='지역 축제 및 영화제 마스터 정보 테이블';
 
 
@@ -61,7 +61,7 @@ CREATE TABLE `tourism_info` (
 PRIMARY KEY (`tour_id`),
 KEY `regn_id` (`regn_id`),
 UNIQUE KEY `uk_tourism_content` (`content_id`),
-CONSTRAINT `tourism_info_ibfk_1` FOREIGN KEY (`regn_id`) REFERENCES `region_info` (`regn_id`)
+CONSTRAINT `tourism_info_ibfk_1` FOREIGN KEY (`regn_id`) REFERENCES `region_code` (`regn_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1594 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='관광 명소 및 상영관 정보 테이블';
 
 -- radotrip.accommodation_info definition
@@ -86,7 +86,7 @@ CREATE TABLE `accommodation_info` (
 PRIMARY KEY (`accom_id`),
 KEY `regn_id` (`regn_id`),
 UNIQUE KEY `uk_accom_content` (`content_id`),
-CONSTRAINT `accommodation_info_ibfk_1` FOREIGN KEY (`regn_id`) REFERENCES `region_info` (`regn_id`)
+CONSTRAINT `accommodation_info_ibfk_1` FOREIGN KEY (`regn_id`) REFERENCES `region_code` (`regn_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='숙박 시설 정보 테이블';
 
 CREATE TABLE classification_code (

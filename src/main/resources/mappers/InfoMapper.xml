@@ -4,7 +4,7 @@
 <mapper namespace="com.api.radotrip.mapper.region.InfoMapper">
     <insert id="addRegionInfo" parameterType="com.api.radotrip.dto.region.InfoDto">
         /* addRegionInfo */
-        INSERT INTO REGION_INFO (
+        INSERT INTO REGION_CODE (
             REGN_CD
             , REGN_NM
             , SIGNGU_CD
@@ -58,7 +58,7 @@
     <select id="loadRegionId" parameterType="hashmap" resultType="Long">
         /* loadRegionId */
         SELECT RI.REGN_ID
-        FROM REGION_INFO RI
+        FROM REGION_CODE RI
         <where>
             <if test="region != null and region != ''">
                 <if test="type == 'festival'">
