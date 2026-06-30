@@ -16,6 +16,10 @@
             , #{signguCd}
             , #{signguNm}
         )
+        ON DUPLICATE KEY UPDATE
+            REGN_NM = #{regnNm}
+            , SIGNGU_NM = #{signguNm}
+            , updated_at = CURRENT_TIMESTAMP
     </insert>
 
     <insert id="addClassificationInfo" parameterType="com.api.radotrip.dto.region.ClassificationDto">

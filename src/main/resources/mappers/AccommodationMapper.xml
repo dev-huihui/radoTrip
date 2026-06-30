@@ -34,6 +34,20 @@
             , #{lclsSystm2}
             , #{lclsSystm3}
         )
+        ON DUPLICATE KEY UPDATE
+            REGN_ID = #{regnId}
+            , ACCOM_NM = #{accomNm}
+            , ACCOM_TYPE = #{accomType}
+            , ADDR1 = #{addr1}
+            , ADDR2 = #{addr2}
+            , MAPX = #{mapx}
+            , MAPY = #{mapy}
+            , TEL = #{tel}
+            , THUMBNAIL = #{thumbnail}
+            , lclsSystm1 = #{lclsSystm1}
+            , lclsSystm2 = #{lclsSystm2}
+            , lclsSystm3 = #{lclsSystm3}
+            , updated_at = CURRENT_TIMESTAMP
     </insert>
 
 </mapper>

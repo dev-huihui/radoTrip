@@ -40,6 +40,22 @@
             , #{homepageUrl}
             , #{apiType}
         )
+        ON DUPLICATE KEY UPDATE
+            REGN_ID = #{regnId}
+            , FEST_NM = #{festNm}
+            , EVENT_START_DATE = #{eventStartDate}
+            , EVENT_END_DATE = #{eventEndDate}
+            , ADDR1 = #{addr1}
+            , ADDR2 = #{addr2}
+            , MAPX = #{mapx}
+            , MAPY = #{mapy}
+            , TEL = #{tel}
+            , THUMBNAIL = #{thumbnail}
+            , lclsSystm1 = #{lclsSystm1}
+            , lclsSystm2 = #{lclsSystm2}
+            , lclsSystm3 = #{lclsSystm3}
+            , HOMEPAGE_URL = #{homepageUrl}
+            , updated_at = CURRENT_TIMESTAMP
     </insert>
 
 </mapper>
