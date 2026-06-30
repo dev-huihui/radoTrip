@@ -101,3 +101,7 @@ radoTripApi/
 ├── gradlew / gradlew.bat
 └── README.md
 ```
+
+## 5. API 확인(Swagger)
+### 접속방법
+http://localhost:8181/swagger 여기로 접속해서 확인
