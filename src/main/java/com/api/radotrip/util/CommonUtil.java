@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.api.radotrip.dto.region.FestivalDto;
 import com.api.radotrip.dto.region.InfoDto;
+import com.api.radotrip.dto.region.TourismDto;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -106,6 +107,10 @@ public class CommonUtil {
             FestivalDto festival = (FestivalDto) dto;
             festival.setCreatedAt(now);
             festival.setUpdatedAt(now);
+        } else if (dto instanceof TourismDto) {
+            TourismDto tourism = (TourismDto) dto;
+            tourism.setCreatedAt(now);
+            tourism.setUpdatedAt(now);
         }
 
         return dto;

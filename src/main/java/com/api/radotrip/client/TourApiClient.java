@@ -129,22 +129,20 @@ public class TourApiClient {
         }
     }
 
-    /**
-     * 지역 기반 관광정보 조회 (areaBasedList1) – JSON 문자열을 반환합니다.
-     */
-    public String fetchAreaBasedList(String areaCode, String sigunguCode, String contentTypeId) {
+    /* 2026.06.30 지역 관광지정보 조회
+     * 관광타입ID > 12: 관광지, 14: 문화시설, 15: 축제공연행사, 25: 여행코스, 28: 레포츠, 32: 숙박, 38: 쇼핑, 39: 음식점
+     * 단, 여기서 관광지/음식점에 대한 정보만 추가 */
+    public String fetchRegionTour(String lDongRegnCd, String lDongSignguCd, String contentTypeId) {
         // 공공데이터포털 API Key는 디코딩된 키인 경우가 많아 URI 인코딩 처리가 깨지지 않도록 URI 객체 직접 빌드
-        URI uri = UriComponentsBuilder.fromUriString(baseUrl + "/B551011/KorService1/areaBasedList1")
+        URI uri = UriComponentsBuilder.fromUriString(baseUrl + "/B551011/KorService2/areaBasedList2")
                 .queryParam("serviceKey", serviceKey)
-                .queryParam("numOfRows", 100)
+                .queryParam("numOfRows", 9999)
                 .queryParam("pageNo", 1)
                 .queryParam("MobileOS", "ETC")
                 .queryParam("MobileApp", "RadoTrip")
                 .queryParam("_type", "json")
-                .queryParam("listYN", "Y")
-                .queryParam("arrange", "A")
-                .queryParam("areaCode", areaCode)
-                .queryParam("sigunguCode", sigunguCode)
+                .queryParam("lDongRegnCd", lDongRegnCd)
+                .queryParam("lDongSignguCd", lDongSignguCd)
                 .queryParam("contentTypeId", contentTypeId)
                 .build(true) // true: 인코딩된 상태 유지
                 .toUri();

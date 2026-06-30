@@ -1,6 +1,7 @@
 package com.api.radotrip.schedule;
 
 import com.api.radotrip.service.region.FestivalService;
+import com.api.radotrip.service.region.TourismService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -18,8 +19,8 @@ import com.api.radotrip.service.region.InfoService;
 public class ScheduleRepo {
 
     private final InfoService infoService;
-
     private final FestivalService festivalService;
+    private final TourismService tourismService;
 
     /** 매일 02:00에 실행 */
     @Scheduled(cron = "${schedule.regionInfo}")
@@ -50,11 +51,35 @@ public class ScheduleRepo {
     public void runFestivalInfoJob() {
         log.info("===== FestivalInfoScheduler START =====");
         try {
-            int saved = festivalService.addFestivalInfo("JIFF");
+            int saved = festivalService.addFestivalInfo("PUB");
             log.info("[Scheduler] FestivalInfo 저장 완료 – {} 레코드", saved);
         } catch (Exception e) {
             log.error("[Scheduler] FestivalInfoScheduler 실행 중 오류", e);
         }
         log.info("===== FestivalInfoScheduler END =====");
+    }
+
+    @Scheduled(cron = "${schedule.tourInfo}")
+    public void runTourInfoJob() {
+        log.info("===== TourInfoScheduler START =====");
+        try {
+            int saved = tourismService.addTourismInfo("12");
+            log.info("[Scheduler] TourInfo 저장 완료 – {} 레코드", saved);
+        } catch (Exception e) {
+            log.error("[Scheduler] TourInfoScheduler 실행 중 오류", e);
+        }
+        log.info("===== TourInfoScheduler END =====");
+    }
+
+    @Scheduled(cron = "${schedule.foodInfo}")
+    public void runFoodInfoJob() {
+        log.info("===== FoodInfoScheduler START =====");
+        try {
+            int saved = tourismService.addTourismInfo("39");
+            log.info("[Scheduler] FoodInfo 저장 완료 – {} 레코드", saved);
+        } catch (Exception e) {
+            log.error("[Scheduler] FoodInfoScheduler 실행 중 오류", e);
+        }
+        log.info("===== FoodInfoScheduler END =====");
     }
 }

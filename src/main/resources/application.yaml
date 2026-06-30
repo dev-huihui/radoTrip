@@ -32,3 +32,5 @@ schedule:
   regionInfo: "0 0 2 * * *"
   jeonjuMovieInfo: "0 0 2 * * *"
   festivalInfo: "0 0 2 * * *"
+  tourInfo: "0 0 2 * * *"
+  foodInfo: "0 0 2 * * *"
