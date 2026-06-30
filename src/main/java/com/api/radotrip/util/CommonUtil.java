@@ -1,10 +1,12 @@
 package com.api.radotrip.util;
 
 import java.time.LocalDateTime;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.api.radotrip.dto.region.FestivalDto;
 import com.api.radotrip.dto.region.InfoDto;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -65,13 +67,26 @@ public class CommonUtil {
      */
     private static <T> T convertNode(ObjectMapper mapper, JsonNode node, Class<T> dtoClass) throws Exception {
         T dto = mapper.treeToValue(node, dtoClass);
+        LocalDateTime now = LocalDateTime.now();
         if (dto instanceof InfoDto) {
             InfoDto info = (InfoDto) dto;
-            LocalDateTime now = LocalDateTime.now();
             info.setCreatedAt(now);
             info.setUpdatedAt(now);
+        } else if (dto instanceof FestivalDto) {
+            FestivalDto festival = (FestivalDto) dto;
+            festival.setCreatedAt(now);
+            festival.setUpdatedAt(now);
         }
 
         return dto;
+    }
+
+    /**
+     * 현재 연도를 문자열(yyyy)로 반환한다.
+     *
+     * @return 현재 연도 (예: "2026")
+     */
+    public static String getNowYear() {
+        return String.valueOf(Year.now().getValue());
     }
 }

@@ -26,15 +26,17 @@ public class TourApiClient {
     private String baseUrl;
 
     // 2026.06.24 전주국제 영화제 정보 가져오기
-    public String fetchJeonjuFestivalInfo() {
+    public String fetchJeonjuFestivalInfo(String startDate, String endDate) {
+        String region = "전북특별자치도";
+        String keyword = "영화제";
         URI uri = UriComponentsBuilder.fromUriString(baseUrl + "/B553457/cultureinfo/area2")
                 .queryParam("serviceKey", serviceKey)
                 .queryParam("numOfRows", 100)
                 .queryParam("pageNo", 1)
-                .queryParam("sido", "전북특별자치도")
-                .queryParam("from", "20260101")
-                .queryParam("to", "20261231")
-                .queryParam("keyword", "영화제")
+                .queryParam("sido", region).encode()
+                .queryParam("from", startDate)
+                .queryParam("to", endDate)
+                .queryParam("keyword", keyword).encode()
                 .build(true)
                 .toUri();
 

@@ -5,19 +5,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.radotrip.service.region.InfoService;
+import com.api.radotrip.service.region.FestivalService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/region/info")
+@RequestMapping("/api/region/festival")
 @RequiredArgsConstructor
-public class InfoController {
-    private final InfoService infoService;
+public class FestivalController {
+    private final FestivalService festivalService;
 
-    @PostMapping("/fetch")
+    @PostMapping("/jeonjuFetch")
     public ResponseEntity<String> fetchAndSave() {
-        int inserted = infoService.addRegionInfo();
+        int inserted = festivalService.addFestivalInfo();
         return ResponseEntity.ok("Inserted " + inserted + " records.");
     }
 
