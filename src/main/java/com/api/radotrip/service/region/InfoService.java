@@ -31,7 +31,7 @@ public class InfoService {
             return 0;
         }
 
-        List<InfoDto> dtos = CommonUtil.parseToList("public", json, InfoDto.class);
+        List<InfoDto> dtos = CommonUtil.parseToList("", json, InfoDto.class);
         int retVal = 0;
         // 2026.06.26 데이터 추가
         for (InfoDto dto : dtos) {

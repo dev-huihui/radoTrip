@@ -51,9 +51,11 @@ public class FestivalService {
         int retVal = 0;
         // 데이터 추가
         for (FestivalDto dto : dtos) {
+            // 2026.06.30 전주국제영화제일 경우 homepage 주소 넣기
+            if (apiType.equals("JIFF")) dto.setHomepageUrl("https://www.jeonjufest.kr/");
             dto.setApiType(apiType);
             // 2026.06.30 지역ID 가져오기
-            dto.setRegnId(infoMapper.loadRegionId(dto));
+            dto.setRegnId(infoMapper.loadRegionId("festival", dto.getRegion(), dto.getSigungu()));
             retVal += festivalMapper.addFestivalInfo(dto);
         }
 

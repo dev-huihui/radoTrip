@@ -6,6 +6,7 @@
         /* addFestivalInfo */
         INSERT INTO FESTIVAL_INFO (
             REGN_ID
+            , CONTENT_ID
             , FEST_NM
             , EVENT_START_DATE
             , EVENT_END_DATE
@@ -20,6 +21,7 @@
         )
         VALUES (
             #{regnId}
+            , #{contentId}
             , #{festNm}
             , #{eventStartDate}
             , #{eventEndDate}

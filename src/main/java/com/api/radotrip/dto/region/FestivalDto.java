@@ -20,6 +20,9 @@ import lombok.NoArgsConstructor;
 public class FestivalDto {
     private Long regnId;
 
+    @JsonAlias({"seq", "contentid"})
+    private String contentId;
+
     // cultureinfo/area2 응답 필드 매핑 (한국문화정보원 공연전시정보)
     @JsonProperty("title")
     private String festNm;
@@ -48,7 +51,7 @@ public class FestivalDto {
     @JsonProperty("tel")
     private String tel;
 
-    @JsonAlias({"firstimage", "thumbnail"})
+    @JsonAlias({"thumbnail", "firstimage"})
     private String thumbnail;
 
     private String homepageUrl;

@@ -24,24 +24,34 @@
         FROM REGION_INFO RI
         <where>
             <if test="region != null and region != ''">
-                <choose>
-                    <when test="apiType == 'JIFF'">
-                        AND RI.REGN_NM = #{region}
-                    </when>
-                    <otherwise>
-                        AND RI.REGN_CD = #{region}
-                    </otherwise>
-                </choose>
+                <if test="type == 'festival'">
+                    <choose>
+                        <when test="apiType == 'JIFF'">
+                            AND RI.REGN_NM = #{region}
+                        </when>
+                        <otherwise>
+                            AND RI.REGN_CD = #{region}
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test="type != 'festival'">
+                    AND RI.REGN_CD = #{region}
+                </if>
             </if>
             <if test="sigungu != null and sigungu != ''">
-                <choose>
-                    <when test="apiType == 'JIFF'">
-                        AND RI.SIGNGU_NM = #{sigungu}
-                    </when>
-                    <otherwise>
-                        AND RI.SIGNGU_CD = #{sigungu}
-                    </otherwise>
-                </choose>
+                <if test="type == 'festival'">
+                    <choose>
+                        <when test="apiType == 'JIFF'">
+                            AND RI.SIGNGU_NM = #{sigungu}
+                        </when>
+                        <otherwise>
+                            AND RI.SIGNGU_CD = #{sigungu}
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test="type != 'festival'">
+                    AND RI.SIGNGU_CD = #{sigungu}
+                </if>
             </if>
         </where>
     </select>

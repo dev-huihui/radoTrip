@@ -9,5 +9,5 @@ import com.api.radotrip.dto.region.InfoDto;
 public interface InfoMapper {
     int addRegionInfo(InfoDto infoDto);
 
-    Long loadRegionId(FestivalDto festivalDto);
+    Long loadRegionId(String type, String region, String sigungu);
 }
