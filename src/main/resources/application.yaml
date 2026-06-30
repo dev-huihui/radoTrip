@@ -34,3 +34,4 @@ schedule:
   festivalInfo: "0 0 2 * * *"
   tourInfo: "0 0 2 * * *"
   foodInfo: "0 0 2 * * *"
+  accommInfo: "0 0 2 * * *"

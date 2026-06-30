@@ -1,5 +1,6 @@
 package com.api.radotrip.schedule;
 
+import com.api.radotrip.service.region.AccommodationService;
 import com.api.radotrip.service.region.FestivalService;
 import com.api.radotrip.service.region.TourismService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class ScheduleRepo {
     private final InfoService infoService;
     private final FestivalService festivalService;
     private final TourismService tourismService;
+    private final AccommodationService accommodationService;
 
     /** 매일 02:00에 실행 */
     @Scheduled(cron = "${schedule.regionInfo}")
@@ -81,5 +83,17 @@ public class ScheduleRepo {
             log.error("[Scheduler] FoodInfoScheduler 실행 중 오류", e);
         }
         log.info("===== FoodInfoScheduler END =====");
+    }
+
+    @Scheduled(cron = "${schedule.accommInfo}")
+    public void runAccommInfoJob() {
+        log.info("===== AccommInfoScheduler START =====");
+        try {
+            int saved = accommodationService.addAccommodationInfo();
+            log.info("[Scheduler] AccommInfo 저장 완료 – {} 레코드", saved);
+        } catch (Exception e) {
+            log.error("[Scheduler] AccommInfoScheduler 실행 중 오류", e);
+        }
+        log.info("===== AccommInfoScheduler END =====");
     }
 }
