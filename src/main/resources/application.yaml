@@ -29,10 +29,11 @@ tourApi:
   serviceKey: ${TOUR_API_SERVICE_KEY:}
   baseUrl: https://apis.data.go.kr
 schedule:
-  regionInfo: "0 0 2 * * *"
-  jeonjuMovieInfo: "0 0 2 * * *"
-  festivalInfo: "0 0 2 * * *"
-  tourInfo: "0 0 2 * * *"
-  foodInfo: "0 0 2 * * *"
-  accommInfo: "0 0 2 * * *"
-  classificationInfo: "0 0 2 * * *"
+  # 선행 데이터(지역정보/분류코드)를 먼저 수집한 뒤 나머지를 순차 실행하도록 시간 분산
+  regionInfo: "0 30 1 * * *"          # 01:30 - 가장 먼저 (regn_id 의존)
+  classificationInfo: "0 40 1 * * *"  # 01:40 - 숙박 accom_type 의존
+  tourInfo: "0 0 2 * * *"             # 02:00
+  foodInfo: "0 10 2 * * *"            # 02:10
+  accommInfo: "0 20 2 * * *"          # 02:20 (분류코드 이후)
+  jeonjuMovieInfo: "0 30 2 * * *"     # 02:30
+  festivalInfo: "0 40 2 * * *"        # 02:40
