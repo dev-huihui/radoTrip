@@ -161,4 +161,34 @@ public class TourApiClient {
             throw new RuntimeException("TourAPI 연동 실패: " + e.getMessage(), e);
         }
     }
+
+    // 2026.06.30 지역 숙박정보 조회
+    public String fetchRegionAccom(String lDongRegnCd, String lDongSignguCd) {
+        // 공공데이터포털 API Key는 디코딩된 키인 경우가 많아 URI 인코딩 처리가 깨지지 않도록 URI 객체 직접 빌드
+        URI uri = UriComponentsBuilder.fromUriString(baseUrl + "/B551011/KorService2/searchStay2")
+                .queryParam("serviceKey", serviceKey)
+                .queryParam("numOfRows", 9999)
+                .queryParam("pageNo", 1)
+                .queryParam("MobileOS", "ETC")
+                .queryParam("MobileApp", "RadoTrip")
+                .queryParam("_type", "json")
+                .queryParam("lDongRegnCd", lDongRegnCd)
+                .queryParam("lDongSignguCd", lDongSignguCd)
+                .build(true) // true: 인코딩된 상태 유지
+                .toUri();
+
+        log.info("Requesting TourAPI: {}", uri);
+
+        try {
+            // RestClient 로부터 JSON 문자열을 그대로 받아 반환합니다.
+            return restClient.get()
+                    .uri(uri)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .body(String.class);
+        } catch (Exception e) {
+            log.error("Failed to fetch data from TourAPI", e);
+            throw new RuntimeException("TourAPI 연동 실패: " + e.getMessage(), e);
+        }
+    }
 }

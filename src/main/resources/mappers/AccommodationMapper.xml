@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.api.radotrip.mapper.region.AccommodationMapper">
+    <insert id="addAccommodationInfo" parameterType="com.api.radotrip.dto.region.AccommodationDto">
+        /* addAccommodationInfo */
+        INSERT INTO ACCOMMODATION_INFO (
+            REGN_ID
+            , CONTENT_ID
+            , ACCOM_NM
+            , ACCOM_TYPE
+            , ADDR1
+            , ADDR2
+            , MAPX
+            , MAPY
+            , TEL
+            , THUMBNAIL
+            , lclsSystm1
+            , lclsSystm2
+            , lclsSystm3
+        )
+        VALUES (
+            #{regnId}
+            , #{contentId}
+            , #{accomNm}
+            , #{accomType}
+            , #{addr1}
+            , #{addr2}
+            , #{mapx}
+            , #{mapy}
+            , #{tel}
+            , #{thumbnail}
+            , #{lclsSystm1}
+            , #{lclsSystm2}
+            , #{lclsSystm3}
+        )
+    </insert>
+
+</mapper>
