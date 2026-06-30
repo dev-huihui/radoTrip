@@ -24,26 +24,31 @@ public class FestivalDto {
     @JsonProperty("title")
     private String festNm;
 
-    @JsonAlias({ "startDate", "eventstartdate" })
+    @JsonAlias({"startDate", "eventstartdate"})
     private String eventStartDate;
-    @JsonAlias({ "endDate", "eventenddate" })
+    @JsonAlias({"endDate", "eventenddate"})
     private String eventEndDate;
 
     // place: 공연/축제 장소명, area+sigungu: 지역
-    @JsonAlias({ "place", "addr1" })
+    @JsonAlias({"place", "addr1"})
     private String addr1;
     @JsonProperty("addr2")
     private String addr2;
 
-    @JsonAlias({ "gpsX", "mapx" })
+    @JsonAlias({"area", "lDongRegnCd"})
+    private String region;
+    @JsonAlias({"sigungu", "lDongSignguCd"})
+    private String sigungu;
+
+    @JsonAlias({"gpsX", "mapx"})
     private Double mapx;
-    @JsonAlias({ "gpsY", "mapy" })
+    @JsonAlias({"gpsY", "mapy"})
     private Double mapy;
 
     @JsonProperty("tel")
     private String tel;
 
-    @JsonAlias({ "firstimage", "thumbnail" })
+    @JsonAlias({"firstimage", "thumbnail"})
     private String thumbnail;
 
     private String homepageUrl;

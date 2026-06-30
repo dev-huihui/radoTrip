@@ -2,6 +2,7 @@ package com.api.radotrip.service.region;
 
 import java.util.List;
 
+import com.api.radotrip.mapper.region.InfoMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class FestivalService {
     private final TourApiClient tourApiClient;
     private final FestivalMapper festivalMapper;
+    private final InfoMapper infoMapper;
 
     /** 데이터 원천 구분값 (cultureinfo/area2 - 전주국제영화제) */
     private static final String API_TYPE = "JIFF";
@@ -39,12 +41,14 @@ public class FestivalService {
             return 0;
         }
 
-        List<FestivalDto> dtos = CommonUtil.parseToList(json, FestivalDto.class);
+        List<FestivalDto> dtos = CommonUtil.parseToList("JIFF", json, FestivalDto.class);
         int retVal = 0;
         // 데이터 추가
         for (FestivalDto dto : dtos) {
             dto.setApiType(API_TYPE);
-            retVal += festivalMapper.insertFestivalInfo(dto);
+            // 2026.06.30 지역ID 가져오기
+            dto.setRegnId(infoMapper.loadRegionId(dto));
+            retVal += festivalMapper.addFestivalInfo(dto);
         }
 
         return retVal;

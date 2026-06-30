@@ -6,5 +6,5 @@ import com.api.radotrip.dto.region.FestivalDto;
 
 @Mapper
 public interface FestivalMapper {
-    int insertFestivalInfo(FestivalDto festivalDto);
+    int addFestivalInfo(FestivalDto festivalDto);
 }

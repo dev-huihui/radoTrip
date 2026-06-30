@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.api.radotrip.mapper.region.InfoMapper">
-    <insert id="insertRegionInfo" parameterType="com.api.radotrip.dto.region.InfoDto">
-        /* insertRegionInfo */ 
+    <insert id="addRegionInfo" parameterType="com.api.radotrip.dto.region.InfoDto">
+        /* addRegionInfo */
         INSERT INTO REGION_INFO (
             REGN_CD
             , REGN_NM
@@ -17,5 +17,33 @@
             , #{signguNm}
         )
     </insert>
+
+    <select id="loadRegionId" parameterType="hashmap" resultType="Long">
+        /* loadRegionId */
+        SELECT RI.REGN_ID
+        FROM REGION_INFO RI
+        <where>
+            <if test="region != null and region != ''">
+                <choose>
+                    <when test="apiType == 'JIFF'">
+                        AND RI.REGN_NM = #{region}
+                    </when>
+                    <otherwise>
+                        AND RI.REGN_CD = #{region}
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="sigungu != null and sigungu != ''">
+                <choose>
+                    <when test="apiType == 'JIFF'">
+                        AND RI.SIGNGU_NM = #{sigungu}
+                    </when>
+                    <otherwise>
+                        AND RI.SIGNGU_CD = #{sigungu}
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+    </select>
 
 </mapper>

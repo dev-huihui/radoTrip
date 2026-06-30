@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.api.radotrip.mapper.region.FestivalMapper">
-    <insert id="insertFestivalInfo" parameterType="com.api.radotrip.dto.region.FestivalDto">
-        /* insertFestivalInfo */
+    <insert id="addFestivalInfo" parameterType="com.api.radotrip.dto.region.FestivalDto">
+        /* addFestivalInfo */
         INSERT INTO FESTIVAL_INFO (
             REGN_ID
-            , TITLE
+            , FEST_NM
             , EVENT_START_DATE
             , EVENT_END_DATE
             , ADDR1
@@ -20,7 +20,7 @@
         )
         VALUES (
             #{regnId}
-            , #{title}
+            , #{festNm}
             , #{eventStartDate}
             , #{eventEndDate}
             , #{addr1}

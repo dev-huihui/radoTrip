@@ -1,5 +1,6 @@
 package com.api.radotrip.schedule;
 
+import com.api.radotrip.service.region.FestivalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -18,16 +19,30 @@ public class ScheduleRepo {
 
     private final InfoService infoService;
 
+    private final FestivalService festivalService;
+
     /** 매일 02:00에 실행 */
-    @Scheduled(cron = "${schedule.areaInfo}")
-    public void runAreaInfoJob() {
-        log.info("===== AreaInfoScheduler START =====");
+    @Scheduled(cron = "${schedule.regionInfo}")
+    public void runRegionInfoJob() {
+        log.info("===== RegionInfoScheduler START =====");
         try {
             int saved = infoService.addRegionInfo();
-            log.info("[Scheduler] AreaInfo 저장 완료 – {} 레코드", saved);
+            log.info("[Scheduler] RegionInfo 저장 완료 – {} 레코드", saved);
         } catch (Exception e) {
-            log.error("[Scheduler] AreaInfoScheduler 실행 중 오류", e);
+            log.error("[Scheduler] RegionInfoScheduler 실행 중 오류", e);
         }
-        log.info("===== AreaInfoScheduler END =====");
+        log.info("===== RegionInfoScheduler END =====");
+    }
+
+    @Scheduled(cron = "${schedule.jeonjuMovieInfo}")
+    public void runJeonjuMovieInfoJob() {
+        log.info("===== JeonjuMovieInfoScheduler START =====");
+        try {
+            int saved = festivalService.addFestivalInfo();
+            log.info("[Scheduler] JeonjuMovieInfo 저장 완료 – {} 레코드", saved);
+        } catch (Exception e) {
+            log.error("[Scheduler] JeonjuMovieInfoScheduler 실행 중 오류", e);
+        }
+        log.info("===== JeonjuMovieInfoScheduler END =====");
     }
 }
