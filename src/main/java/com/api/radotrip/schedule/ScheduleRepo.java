@@ -96,4 +96,16 @@ public class ScheduleRepo {
         }
         log.info("===== AccommInfoScheduler END =====");
     }
+
+    @Scheduled(cron = "${schedule.classificationInfo}")
+    public void runClassificationInfoJob() {
+        log.info("===== ClassificationInfoScheduler START =====");
+        try {
+            int saved = infoService.addClassificationInfo();
+            log.info("[Scheduler] ClassificationInfo 저장 완료 – {} 레코드", saved);
+        } catch (Exception e) {
+            log.error("[Scheduler] ClassificationInfoScheduler 실행 중 오류", e);
+        }
+        log.info("===== ClassificationInfoScheduler END =====");
+    }
 }
