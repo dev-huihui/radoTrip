@@ -29,4 +29,5 @@ tourApi:
   serviceKey: ${TOUR_API_SERVICE_KEY:}
   baseUrl: https://apis.data.go.kr
 schedule:
-  areaInfo: "0 0 2 * * *"
+  regionInfo: "0 0 2 * * *"
+  jeonjuMovieInfo: "0 0 2 * * *"
