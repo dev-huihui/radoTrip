@@ -16,8 +16,14 @@ public class FestivalController {
     private final FestivalService festivalService;
 
     @PostMapping("/jeonjuFetch")
+    public ResponseEntity<String> fetchAndSaveForJeonju() {
+        int inserted = festivalService.addFestivalInfo("JIFF");
+        return ResponseEntity.ok("Inserted " + inserted + " records.");
+    }
+
+    @PostMapping("/fetch")
     public ResponseEntity<String> fetchAndSave() {
-        int inserted = festivalService.addFestivalInfo();
+        int inserted = festivalService.addFestivalInfo("PUB");
         return ResponseEntity.ok("Inserted " + inserted + " records.");
     }
 

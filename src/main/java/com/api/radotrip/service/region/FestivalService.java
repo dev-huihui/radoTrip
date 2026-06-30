@@ -22,30 +22,36 @@ public class FestivalService {
     private final FestivalMapper festivalMapper;
     private final InfoMapper infoMapper;
 
-    /** 데이터 원천 구분값 (cultureinfo/area2 - 전주국제영화제) */
-    private static final String API_TYPE = "JIFF";
-
     /**
      * API 로부터 축제/영화제 정보를 받아 파싱하고, DB에 저장한다.
      *
      * @return 파싱·저장된 레코드 수
      */
     @Transactional
-    public int addFestivalInfo() {
+    public int addFestivalInfo(String apiType) {
         String startDate = CommonUtil.getNowYear() + "0101";
         String endDate = CommonUtil.getNowYear() + "1231";
-        String json = tourApiClient.fetchJeonjuFestivalInfo(startDate, endDate);
+        String json = "";
+
+        if (apiType.equals("JIFF")) {
+            // 2026.06.30 전주국제영화제 정보
+            json = tourApiClient.fetchJeonjuFestivalInfo(startDate, endDate);
+        } else {
+            // 2026.06.30 전북특별자치도 축제정보
+            json = tourApiClient.fetchRegionFestival("52", "", startDate);
+        }
+
         // 데이터가 없을 경우
         if (json == null || json.isBlank()) {
             log.warn("FestivalInfo API returned empty response");
             return 0;
         }
 
-        List<FestivalDto> dtos = CommonUtil.parseToList("JIFF", json, FestivalDto.class);
+        List<FestivalDto> dtos = CommonUtil.parseToList(apiType, json, FestivalDto.class);
         int retVal = 0;
         // 데이터 추가
         for (FestivalDto dto : dtos) {
-            dto.setApiType(API_TYPE);
+            dto.setApiType(apiType);
             // 2026.06.30 지역ID 가져오기
             dto.setRegnId(infoMapper.loadRegionId(dto));
             retVal += festivalMapper.addFestivalInfo(dto);

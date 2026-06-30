@@ -38,11 +38,23 @@ public class ScheduleRepo {
     public void runJeonjuMovieInfoJob() {
         log.info("===== JeonjuMovieInfoScheduler START =====");
         try {
-            int saved = festivalService.addFestivalInfo();
+            int saved = festivalService.addFestivalInfo("JIFF");
             log.info("[Scheduler] JeonjuMovieInfo 저장 완료 – {} 레코드", saved);
         } catch (Exception e) {
             log.error("[Scheduler] JeonjuMovieInfoScheduler 실행 중 오류", e);
         }
         log.info("===== JeonjuMovieInfoScheduler END =====");
+    }
+
+    @Scheduled(cron = "${schedule.festivalInfo}")
+    public void runFestivalInfoJob() {
+        log.info("===== FestivalInfoScheduler START =====");
+        try {
+            int saved = festivalService.addFestivalInfo("JIFF");
+            log.info("[Scheduler] FestivalInfo 저장 완료 – {} 레코드", saved);
+        } catch (Exception e) {
+            log.error("[Scheduler] FestivalInfoScheduler 실행 중 오류", e);
+        }
+        log.info("===== FestivalInfoScheduler END =====");
     }
 }

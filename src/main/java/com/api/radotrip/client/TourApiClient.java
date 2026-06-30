@@ -37,7 +37,7 @@ public class TourApiClient {
         String keyword = URLEncoder.encode("영화제", StandardCharsets.UTF_8);
         URI uri = UriComponentsBuilder.fromUriString(baseUrl + "/B553457/cultureinfo/area2")
                 .queryParam("serviceKey", serviceKey)
-                .queryParam("numOfRows", 100)
+                .queryParam("numOfRows", 10)
                 .queryParam("pageNo", 1)
                 .queryParam("sido", region)
                 .queryParam("from", startDate)
@@ -61,7 +61,6 @@ public class TourApiClient {
                     .retrieve()
                     .body(byte[].class);
             String xml = bytes == null ? "" : new String(bytes, StandardCharsets.UTF_8);
-            log.info("Requesting xml: {}", xml);
             // 이 API는 XML 전용이므로, 후속 JSON 파싱을 위해 JSON 문자열로 변환해 반환한다.
             return CommonUtil.xmlToJson(xml);
         } catch (Exception e) {
@@ -96,6 +95,37 @@ public class TourApiClient {
         } catch (Exception e) {
             log.error("Failed to fetch data from TourAPI", e);
             throw new RuntimeException("TourAPI(areaInfo) 연동 실패: " + e.getMessage(), e);
+        }
+    }
+
+    // 2026.06.30 지역 축제정보 가져오기
+    public String fetchRegionFestival(String lDongRegnCd, String lDongSignguCd, String startDate) {
+        // 공공데이터포털 API Key는 디코딩된 키인 경우가 많아 URI 인코딩 처리가 깨지지 않도록 URI 객체 직접 빌드
+        URI uri = UriComponentsBuilder.fromUriString(baseUrl + "/B551011/KorService2/searchFestival2")
+                .queryParam("serviceKey", serviceKey)
+                .queryParam("numOfRows", 9999)
+                .queryParam("pageNo", 1)
+                .queryParam("MobileOS", "ETC")
+                .queryParam("MobileApp", "RadoTrip")
+                .queryParam("_type", "json")
+                .queryParam("eventStartDate", startDate)
+                .queryParam("lDongRegnCd", lDongRegnCd)
+                .queryParam("lDongSignguCd", lDongSignguCd)
+                .build(true) // true: 인코딩된 상태 유지
+                .toUri();
+
+        log.info("Requesting TourAPI: {}", uri);
+
+        try {
+            // RestClient 로부터 JSON 문자열을 그대로 받아 반환합니다.
+            return restClient.get()
+                    .uri(uri)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .body(String.class);
+        } catch (Exception e) {
+            log.error("Failed to fetch data from TourAPI", e);
+            throw new RuntimeException("TourAPI 연동 실패: " + e.getMessage(), e);
         }
     }
 

@@ -31,3 +31,4 @@ tourApi:
 schedule:
   regionInfo: "0 0 2 * * *"
   jeonjuMovieInfo: "0 0 2 * * *"
+  festivalInfo: "0 0 2 * * *"
