@@ -1,7 +1,7 @@
 package com.api.radotrip.mapper.region;
 
-import com.api.radotrip.dto.region.FestivalDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.api.radotrip.dto.region.InfoDto;
 
@@ -9,5 +9,8 @@ import com.api.radotrip.dto.region.InfoDto;
 public interface InfoMapper {
     int addRegionInfo(InfoDto infoDto);
 
-    Long loadRegionId(String type, String region, String sigungu);
+    Long loadRegionId(@Param("type") String type,
+                      @Param("apiType") String apiType,
+                      @Param("region") String region,
+                      @Param("sigungu") String sigungu);
 }

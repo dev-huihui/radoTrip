@@ -27,10 +27,8 @@ public class TourismDto {
     private String tourNm;
     private String tourType;
 
-    // place: 공연/축제 장소명, area+sigungu: 지역
-    @JsonProperty("addr1")
+    // area+sigungu: 지역
     private String addr1;
-    @JsonProperty("addr2")
     private String addr2;
 
     @JsonProperty("lDongRegnCd")
@@ -38,16 +36,18 @@ public class TourismDto {
     @JsonProperty("lDongSignguCd")
     private String sigungu;
 
-    @JsonAlias("mapx")
     private Double mapx;
-    @JsonAlias("mapy")
     private Double mapy;
 
-    @JsonProperty("tel")
     private String tel;
 
     @JsonAlias("firstimage")
     private String thumbnail;
+
+    // 분류체계 (TourAPI lclsSystm1/2/3)
+    private String lclsSystm1;
+    private String lclsSystm2;
+    private String lclsSystm3;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;

@@ -16,6 +16,9 @@
             , MAPY
             , TEL
             , THUMBNAIL
+            , lclsSystm1
+            , lclsSystm2
+            , lclsSystm3
             , HOMEPAGE_URL
             , API_TYPE
         )
@@ -31,6 +34,9 @@
             , #{mapy}
             , #{tel}
             , #{thumbnail}
+            , #{lclsSystm1}
+            , #{lclsSystm2}
+            , #{lclsSystm3}
             , #{homepageUrl}
             , #{apiType}
         )

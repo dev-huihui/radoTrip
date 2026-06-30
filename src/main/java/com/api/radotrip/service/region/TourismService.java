@@ -47,7 +47,7 @@ public class TourismService {
              * ATTRACTION: 일반관광지, FOOD: 맛집*/
             dto.setTourType(contentId.equals("12") ? "ATTRACTION" : "FOOD");
             // 2026.06.30 지역ID 가져오기
-            dto.setRegnId(infoMapper.loadRegionId("tour", dto.getRegion(), dto.getSigungu()));
+            dto.setRegnId(infoMapper.loadRegionId("tour", null, dto.getRegion(), dto.getSigungu()));
             retVal += tourismMapper.addTourismInfo(dto);
         }
 

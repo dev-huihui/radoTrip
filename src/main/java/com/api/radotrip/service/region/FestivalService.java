@@ -55,7 +55,7 @@ public class FestivalService {
             if (apiType.equals("JIFF")) dto.setHomepageUrl("https://www.jeonjufest.kr/");
             dto.setApiType(apiType);
             // 2026.06.30 지역ID 가져오기
-            dto.setRegnId(infoMapper.loadRegionId("festival", dto.getRegion(), dto.getSigungu()));
+            dto.setRegnId(infoMapper.loadRegionId("festival", apiType, dto.getRegion(), dto.getSigungu()));
             retVal += festivalMapper.addFestivalInfo(dto);
         }
 

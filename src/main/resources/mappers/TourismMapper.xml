@@ -15,6 +15,9 @@
             , MAPY
             , TEL
             , THUMBNAIL
+            , lclsSystm1
+            , lclsSystm2
+            , lclsSystm3
         )
         VALUES (
             #{regnId}
@@ -27,6 +30,9 @@
             , #{mapy}
             , #{tel}
             , #{thumbnail}
+            , #{lclsSystm1}
+            , #{lclsSystm2}
+            , #{lclsSystm3}
         )
     </insert>
 

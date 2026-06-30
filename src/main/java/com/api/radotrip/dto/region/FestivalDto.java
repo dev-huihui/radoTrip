@@ -33,26 +33,29 @@ public class FestivalDto {
     private String eventEndDate;
 
     // place: 공연/축제 장소명, area+sigungu: 지역
-    @JsonAlias({"place", "addr1"})
+    @JsonAlias("place")
     private String addr1;
-    @JsonProperty("addr2")
     private String addr2;
 
     @JsonAlias({"area", "lDongRegnCd"})
     private String region;
-    @JsonAlias({"sigungu", "lDongSignguCd"})
+    @JsonAlias("lDongSignguCd")
     private String sigungu;
 
-    @JsonAlias({"gpsX", "mapx"})
+    @JsonAlias("gpsX")
     private Double mapx;
-    @JsonAlias({"gpsY", "mapy"})
+    @JsonAlias("gpsY")
     private Double mapy;
 
-    @JsonProperty("tel")
     private String tel;
 
-    @JsonAlias({"thumbnail", "firstimage"})
+    @JsonAlias("firstimage")
     private String thumbnail;
+
+    // 분류체계 (TourAPI lclsSystm1/2/3)
+    private String lclsSystm1;
+    private String lclsSystm2;
+    private String lclsSystm3;
 
     private String homepageUrl;
 
