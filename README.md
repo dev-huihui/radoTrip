@@ -68,37 +68,54 @@ radoTripApi/
 │   │   │   ├── RadoTripApiApplication.java
 │   │   │   ├── ServletInitializer.java
 │   │   │   ├── client/
-│   │   │   │   └── TourApiClient.java        # 한국관광공사 TourAPI 호출
+│   │   │   │   └── TourApiClient.java               # 한국관광공사 TourAPI 호출 (지역/축제/관광지/음식점/숙박/분류코드)
 │   │   │   ├── config/
-│   │   │   │   ├── RestClientConfig.java     # RestClient 빈 설정
-│   │   │   │   └── SwaggerConfig.java        # Swagger UI 설정
+│   │   │   │   ├── RestClientConfig.java            # RestClient 빈 설정
+│   │   │   │   └── SwaggerConfig.java               # Swagger UI 설정
 │   │   │   ├── controller/
-│   │   │   │   └── area/
-│   │   │   │       └── InfoController.java   # POST /api/area/info/fetch
+│   │   │   │   └── region/
+│   │   │   │       ├── InfoController.java          # POST /api/region/info/fetch, /api/region/info/classification/fetch
+│   │   │   │       ├── FestivalController.java      # POST /api/region/festival/fetch, /api/region/festival/jeonjuFetch
+│   │   │   │       ├── TourismController.java       # POST /api/region/tourism/tourFetch, /api/region/tourism/foodFetch
+│   │   │   │       └── AccommodationController.java # POST /api/region/accomm/fetch
 │   │   │   ├── dto/
-│   │   │   │   └── area/
-│   │   │   │       └── InfoDto.java
+│   │   │   │   └── region/
+│   │   │   │       ├── InfoDto.java                 # 지역 코드 (region_code)
+│   │   │   │       ├── ClassificationDto.java       # 분류체계 코드 (classification_code)
+│   │   │   │       ├── FestivalDto.java             # 축제/영화제 (festival_info)
+│   │   │   │       ├── TourismDto.java              # 관광지/음식점 (tourism_info)
+│   │   │   │       └── AccommodationDto.java        # 숙박 (accommodation_info)
 │   │   │   ├── mapper/
-│   │   │   │   └── area/
-│   │   │   │       └── InfoMapper.java
+│   │   │   │   └── region/
+│   │   │   │       ├── InfoMapper.java
+│   │   │   │       ├── FestivalMapper.java
+│   │   │   │       ├── TourismMapper.java
+│   │   │   │       └── AccommodationMapper.java
 │   │   │   ├── schedule/
-│   │   │   │   └── ScheduleRepo.java         # 지역 정보 자동 수집 스케줄러
+│   │   │   │   └── ScheduleRepo.java                # 데이터 자동 수집 스케줄러 (매일 새벽 순차 실행)
 │   │   │   ├── service/
-│   │   │   │   └── area/
-│   │   │   │       └── InfoService.java
+│   │   │   │   └── region/
+│   │   │   │       ├── InfoService.java             # 지역 코드 / 분류코드 수집·저장
+│   │   │   │       ├── FestivalService.java         # 전북 축제 / 전주국제영화제(JIFF) 수집·저장
+│   │   │   │       ├── TourismService.java          # 관광지 / 음식점 수집·저장
+│   │   │   │       └── AccommodationService.java    # 숙박 수집·저장
 │   │   │   └── util/
-│   │   │       ├── CommonUtil.java
+│   │   │       ├── CommonUtil.java                  # XML→JSON 변환, 공통 JSON 파싱
 │   │   │       └── PasswordEncryptor.java
 │   │   └── resources/
 │   │       ├── application.yaml
 │   │       ├── application-local.yaml
 │   │       ├── application-dev.yaml
 │   │       └── mappers/
-│   │           └── InfoMapper.xml
+│   │           ├── InfoMapper.xml
+│   │           ├── FestivalMapper.xml
+│   │           ├── TourismMapper.xml
+│   │           └── AccommodationMapper.xml
 │   └── test/
 ├── build.gradle
 ├── settings.gradle
 ├── gradlew / gradlew.bat
+├── Table.md                                          # DB 테이블 생성 DDL
 └── README.md
 ```
 
