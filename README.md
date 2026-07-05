@@ -119,6 +119,20 @@ radoTripApi/
 └── README.md
 ```
 
-## 5. API 확인(Swagger)
+## 5. 개발 환경 설정
+
+### JDK 경로 설정 (gradle.properties)
+루트의 `gradle.properties` 파일에서 Gradle 빌드에 사용할 JDK 경로를 지정합니다.
+
+```properties
+org.gradle.java.home=C:/Program Files/Java/jdk-21.0.2
+```
+
+- 이 경로는 **개발자 본인 PC에 설치된 JDK 21 경로**에 맞게 수정해서 사용합니다.
+- JDK 설치 위치가 다르면 빌드가 실패하므로, 클론 후 본인 환경의 JDK 21 설치 경로로 변경해 주세요.
+
+---
+
+## 6. API 확인(Swagger)
 ### 접속방법
 http://localhost:8181/swagger 여기로 접속해서 확인
