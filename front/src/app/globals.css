@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/*
+ * 라도 트립 컬러 팔레트 (로고 기반)
+ * - primary : 딥 블루  (버튼/헤더/링크)
+ * - sage    : 세이지 그린 (태그/성공/지도핀)
+ * - gold    : 골드     (별점/추천 배지)
+ * - cream   : 오프화이트 (페이지 배경)
+ * - ink     : 다크 블루 그레이 (본문 텍스트)
+ */
+@theme {
+  --color-primary: #1d5d7e;
+  --color-primary-dark: #16485f;
+  --color-primary-light: #e8f0f5;
+  --color-sage: #7fb08a;
+  --color-sage-dark: #4e9273;
+  --color-sage-light: #eaf3ed;
+  --color-gold: #c9a24b;
+  --color-gold-light: #f6efdd;
+  --color-cream: #f7faf9;
+  --color-ink: #16323f;
+  --color-ink-muted: #5a7382;
+
+  --font-sans: var(--font-noto-sans-kr), "Apple SD Gothic Neo", "Malgun Gothic",
+    sans-serif;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
